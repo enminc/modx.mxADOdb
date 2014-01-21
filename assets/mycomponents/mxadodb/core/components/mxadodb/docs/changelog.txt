@@ -1,0 +1,10 @@
+Changelog for mxADOdb
+
+mxADOdb 1.0.2
+---------------------------------
+Initial build using pmweb-adam and http://mycmp.pmmsystem.loc/
+Local development component packaging is in place
+
+mxADOdb 1.0.0
+---------------------------------
+Initial Version

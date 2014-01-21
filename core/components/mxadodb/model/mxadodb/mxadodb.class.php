@@ -22,6 +22,19 @@
  *
  * @package mxadodb
  */
+/*if(!function_exists('adodb_error_handler')) {
+
+}
+
+if(!class_exists('ADODB_Exception')) {
+
+}
+
+if (!defined('_ADODB_LAYER')) {
+require_once(dirname(__DIR__).'/adodb5/adodb-errorhandler.inc.php');
+require_once(dirname(__DIR__).'/adodb5/adodb-exceptions.inc.php');
+    require_once(dirname(__DIR__).'/adodb5/adodb.inc.php');
+}*/
 
  class mxadodb {
 
@@ -79,8 +92,6 @@
 
              if ($dsn) {
 
-                 $this->logDebug('We have a DSN connection [' . $dsn . ']');
-
                  if (!empty($adodb)) {
                      foreach ($adodb as $k => $v) {
                          ${$k} = $v;
@@ -88,22 +99,16 @@
                  }
 
                  try {
-
-                     require_once MODX_CORE_PATH.'components/mxadodb/model/adodb5/adodb-errorhandler.inc.php';
-                     require_once MODX_CORE_PATH.'components/mxadodb/model/adodb5/adodb-exceptions.inc.php';
-                     require_once MODX_CORE_PATH.'components/mxadodb/model/adodb5/adodb.inc.php';
+                    if (!defined('_ADODB_LAYER')) { // it may be already declared in other code
+                         require_once MODX_CORE_PATH.'components/mxadodb/model/adodb5/adodb-errorhandler.inc.php';
+                         require_once MODX_CORE_PATH.'components/mxadodb/model/adodb5/adodb-exceptions.inc.php';
+                         require_once MODX_CORE_PATH.'components/mxadodb/model/adodb5/adodb.inc.php';
+                    }
 
                      $new_conn = ADONewConnection($dsn); # persist is optional
-
-                     if($new_conn){
-                         $this->dbConns[$conn] = $new_conn;
-                     }
-                     else{
-                         $this->logError('Connection failed for [' . $conn . ']');
-                     }
-
-                     $this->logDebug('New Connection made');
+                     $this->dbConns[$conn] = $new_conn;
                      return $this->dbConns[$conn];
+                     
                  } catch (exception $e) {
                      $this->logError('Connection failed for [' . $conn . ']');
                      $this->logError($e->gettrace());

@@ -7,7 +7,7 @@ $components = array(
     'packageName' => 'mxADOdb',  /* No spaces, no dashes */
     'packageNameLower' => $packageNameLower,
     'packageDescription' => 'mxADOdb project for MyComponent extra',
-    'version' => '1.0.1',
+    'version' => '1.0.2',
     'release' => 'beta1',
     'author' => 'Adam Smith',
     'email' => 'adam@ethannewmedia.com',
@@ -37,6 +37,7 @@ $components = array(
         MODX_CORE_PATH . 'components/mycomponent/core/components/mycomponent/'),
     /* path to new project root */
     'targetRoot' => MODX_ASSETS_PATH . 'mycomponents/' . $packageNameLower . '/',
+    'targetRoot' => '/home/projects/_reboot_/mxADOdb/assets/mycomponents/' . $packageNameLower . '/',
 
 
     /* *********************** NEW SYSTEM SETTINGS ************************ */
@@ -48,7 +49,7 @@ $components = array(
 
     'newSystemSettings' => array(
         'mxadodb_dsn' => array( // key
-            'key' => 'mxadodb_dsn',
+            'key' => 'mxadodb.dsn',
             'name' => 'DSN',
             'description' => 'DSN connection string (ex: "pdo_mysql://user:pwd@localhost/mydb?persist" # persist is optional)',
             'namespace' => 'mxadodb',
@@ -57,7 +58,7 @@ $components = array(
             'area' => 'Connection',
         ),
         'mxadodb_adodb' => array( // key
-            'key' => 'mxadodb_adodb',
+            'key' => 'mxadodb.adodb',
             'name' => 'ADOdb Global Variables',
             'description' => 'JSON object of key/value pairs representing the global values. ex. {"ADODB_FETCH_MODE":"ADODB_FETCH_NUM"} will become $ADODB_FETCH_MODE = ADODB_FETCH_NUM',
             'namespace' => 'mxadodb',
